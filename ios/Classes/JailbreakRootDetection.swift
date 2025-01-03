@@ -6,36 +6,29 @@
 //
 
 import Foundation
-import IOSSecuritySuite
 
 class JailbreakRootDetection {
     
     func checkJailBroken() -> Bool {
         let isJailBroken = UIDevice.current.isJailBroken
-        let amJailbroken = IOSSecuritySuite.amIJailbroken()
         let amReverseEngineered = ReverseEngineeringChecker.amIReverseEngineered()
-        let amProxied = IOSSecuritySuite.amIProxied()
         let fridaFound = FridaChecker.isFound()
         let cydiaFound = CydiaChecker.isFound()
         
         return isJailBroken
-        || amJailbroken
         || amReverseEngineered
-        || amProxied
         || fridaFound
         || cydiaFound
     }
 
     func checkJail() -> Bool {
         let isJailBroken = UIDevice.current.isJailBroken
-        let amJailbroken = IOSSecuritySuite.amIJailbroken()
-        
+
         return isJailBroken
-        || amJailbroken
     }
 
     func checkDebugged() -> Bool {
-        return IOSSecuritySuite.amIDebugged()
+        return DebuggerChecker.amIDebugged()
     }
 
     func checkReverseEngineered() -> Bool {
@@ -43,7 +36,7 @@ class JailbreakRootDetection {
     }
 
     func checkProxied() -> Bool {
-        return IOSSecuritySuite.amIProxied()
+        return false
     }
 
     func checkFrida() -> Bool {
@@ -56,12 +49,15 @@ class JailbreakRootDetection {
     
     func checkRealDevice() -> Bool {
         let isSimulator = UIDevice.current.isSimulator
-        let amEmulator = IOSSecuritySuite.amIRunInEmulator()
-        
-        return !isSimulator && !amEmulator
+
+        return !isSimulator
     }
     
     func checkTampered(bundleId: String) -> Bool {
-        return IOSSecuritySuite.amITampered([.bundleID(bundleId)]).result
+        if bundleId != Bundle.main.bundleIdentifier {
+            return true
+        }
+
+        return false
     }
 }

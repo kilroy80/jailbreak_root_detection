@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/jailbreak_root_detection.svg)](https://pub.dartlang.org/packages/jailbreak_root_detection)
 
-Uses [RootBeer](https://github.com/scottyab/rootbeer) + DetectFrida for Android root detection and [IOSSecuritySuite](https://github.com/securing/IOSSecuritySuite) for iOS jailbreak detection.
+Uses [RootBeer](https://github.com/scottyab/rootbeer) + DetectFrida for Android root detection and iOS jailbreak detection.
 
 ## Getting started
 

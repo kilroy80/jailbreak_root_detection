@@ -23,9 +23,9 @@ enum JailbreakIssue {
     if (value == "notRealDevice") {
       return JailbreakIssue.notRealDevice;
     }
-    if (value == "proxied") {
-      return JailbreakIssue.proxied;
-    }
+    // if (value == "proxied") {
+    //   return JailbreakIssue.proxied;
+    // }
     if (value == "debugged") {
       return JailbreakIssue.debugged;
     }

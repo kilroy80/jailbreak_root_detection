@@ -7,7 +7,6 @@
 
 import Foundation
 import MachO // dyld
-import IOSSecuritySuite
 
 class ReverseEngineeringChecker {
     typealias CheckResult = (passed: Bool, failMessage: String)
@@ -23,21 +22,11 @@ class ReverseEngineeringChecker {
     private static func performChecks() -> ReverseEngineeringStatus {
         var passed = true
         var result: CheckResult = (true, "")
-        
-        for check in FailedCheck.allCases {
-            switch check {
-            case .existenceOfSuspiciousFiles:
-                result = checkExistenceOfSuspiciousFiles()
-            case .dyld:
-                result = checkDYLD()
-            case .openedPorts:
-                result = checkOpenedPorts()
-            default:
-              continue
-            }
 
-            passed = passed && result.passed
-        }
+        result = checkExistenceOfSuspiciousFiles()
+        result = checkDYLD()
+        result = checkOpenedPorts()
+        passed = passed && result.passed
 
         return ReverseEngineeringStatus(passed: passed)
     }
