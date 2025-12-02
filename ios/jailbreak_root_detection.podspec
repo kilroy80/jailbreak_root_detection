@@ -14,10 +14,12 @@ Check Jailbreak and Rooted for Android and iOS.
   s.license          = { :file => '../LICENSE' }
   s.author           = 'w3connext'
   s.source           = { :path => '.' }
-  s.source_files     = 'Classes/**/*'
+  s.source_files     = 'jailbreak_root_detection/Sources/jailbreak_root_detection/**/*'
   s.dependency       'Flutter'
   s.platform         = :ios, '11.0'
   s.swift_version    = ["4.0", "4.1", "4.2", "5.0", "5.1", "5.2", "5.3", "5.4", "5.5"]
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+
+  s.resource_bundles = {'jailbreak_root_detection_privacy' => ['jailbreak_root_detection/Sources/jailbreak_root_detection/PrivacyInfo.xcprivacy']}
 end
